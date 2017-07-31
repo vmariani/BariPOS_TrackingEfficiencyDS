@@ -44,12 +44,8 @@
   tdrStyle->SetHistLineColor(1);
   tdrStyle->SetHistLineStyle(0);
   tdrStyle->SetHistLineWidth(1);
-  // tdrStyle->SetLegoInnerR(Float_t rad = 0.5);
-  // tdrStyle->SetNumberContours(Int_t number = 20);
 
-//  tdrStyle->SetEndErrorSize(0);
   tdrStyle->SetErrorX(0.);
-//  tdrStyle->SetErrorMarker(20);
 gSystem->Load("libRooFit") ;
 using namespace RooFit ;
 
@@ -61,7 +57,6 @@ RooRealVar sigma("sigma","width of gaussian",0.0005, 0.0002, 0.0015);
 RooRealVar mean("mean","mean of gaussian",0.1454, 0.14, 0.15);
 
 RooRealVar sigma2("sigma2","width of gaussian",0.0005, 0.0003, 0.002);
-//RooRealVar mean2("mean2","mean of gaussian",0.146, 0.1424, 0.1484) ;
    
 // --- Build Gaussian PDF ---
 RooGaussian sign("sign","signal PDF",deltaM,mean,sigma) ;
@@ -69,24 +64,18 @@ RooGaussian sign2("sign2","signal PDF",deltaM,mean,sigma2) ;
 RooRealVar fr("fr","width of gaussian",0.5, 0., 1) ;
 RooAddPdf sig("sig", "g1+g2", RooArgSet(sign, sign2),fr);
 
+// --- Build bkg function ---
 RooRealVar m0("m0", "m0", 0.1396);
-RooRealVar p0("p0","p0",0.003,0.0002,0.0042) ;//0.0003,0.0002,0.0042
-RooRealVar p1("p1","p1",4, 0., 7.) ;//6,0,7.
-RooRealVar p2("p2","p2",6,0.,8.) ;//7,0,8.
+RooRealVar p0("p0","p0",0.003,0.0002,0.0042) ;
+RooRealVar p1("p1","p1",4, 0., 7.) ;
+RooRealVar p2("p2","p2",6,0.,8.) ;.
 RooGenericPdf bkg("bkg","(1-exp(-(deltaM-m0)/p0))*(deltaM/m0)^p1 + p2*(deltaM/m0 - 1)",RooArgSet(m0,deltaM,p0,p1,p2)) ;
-
-RooRealVar poly_c1("poly_c1","coefficient x",0., -100., 100.) ;
-RooRealVar poly_c2("poly_c2","coefficient x^2",0.004, -10., 10.);
-RooRealVar poly_c3("poly_c3","coefficient x^3",0.03, -10., 10.);
-RooRealVar poly_c4("poly_c4","coefficient x^4",3., -10., 10.);
-//RooChebychev bkg("bkg","quartic function",deltaM, RooArgSet(poly_c1, poly_c2, poly_c3, poly_c4)) ;
 
 RooRealVar nsig("nsig","#signal events",8000,0,15000000) ;
 RooRealVar nbkg("nbkg","#background events",15000,0,200000000) ;
 RooAddPdf model("model","g+a",RooArgList(sig,bkg),RooArgList(nsig,nbkg)) ;
-//RooAddPdf model("model","g",RooArgList(bkg),RooArgList(nbkg)) ;
 
-TFile *f00 = new TFile("DS_4b_tot_RR4.root");
+TFile *f00 = new TFile("DS_2b_data2016.root");
 TString name = "input_file";
 TH1F *da= (TH1F*) f00->Get(name);
 
@@ -122,8 +111,7 @@ latexLabel2.SetTextFont(32);
 latexLabel2.SetNDC();
 latexLabel2.DrawLatex(0.3, 0.93, " CMS Preliminary, #sqrt{s} = 13 TeV, 2016");
 img->FromPad(c);
-img->WriteImage("Immagini/"+name+"_4b_DATA.png");
-//mesframe->SaveAs("Immagini/"+name+"_4b.png");
+img->WriteImage("Images/"+name+"_4b_DATA.png");
 gSystem->Exit(0);
 }
 
