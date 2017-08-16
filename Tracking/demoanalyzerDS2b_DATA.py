@@ -17,14 +17,11 @@ process.MessageLogger = cms.Service("MessageLogger")
 
 process.source = cms.Source("PoolSource",
   fileNames = cms.untracked.vstring(
-       '/store/data/Run2016C/ZeroBias/AOD/23Sep2016-v1/90000/002391CD-1783-E611-A733-24BE05CEACA1.root',
-       #'/store/data/Run2016C/ZeroBias/AOD/23Sep2016-v1/90000/003CC301-2083-E611-825B-24BE05C636E1.root',
-       #'/store/data/Run2016C/ZeroBias/AOD/23Sep2016-v1/90000/004660FB-4283-E611-8A46-5065F382C2F1.root',
-       #'/store/data/Run2016C/ZeroBias/AOD/23Sep2016-v1/90000/004D0143-C282-E611-9713-0002C94CDA12.root',
+  '/store/data/Run2016C/ZeroBias/AOD/23Sep2016-v1/90000/002391CD-1783-E611-A733-24BE05CEACA1.root'     
 )##,
 )
 
-process.demo = cms.EDAnalyzer('DATI13_2btree_neg'
+process.demo = cms.EDAnalyzer('DATA13_2btree'
 )
 
 
