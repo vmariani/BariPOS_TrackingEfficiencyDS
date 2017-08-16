@@ -22,7 +22,7 @@ using namespace std;
 
 void Analysis_DATA4b(){
 
-char *file_DATA=(char *)"/eos/user/v/vmariani/POS_Bari/DATA4b_2016/DS4b_DATA2016_ZeroBias_skim_total.root";
+char *file_DATA=(char *)"/home/common/LongExercises/Dstar/ntuples/DS4b_DATA2016_ZeroBias_skim_total.root";
 TFile *DATA  =new TFile (file_DATA);
 
 TTree *a_ = (TTree*)DATA->Get("demo/Analysis");

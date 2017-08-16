@@ -22,7 +22,7 @@ using namespace std;
 
 void Analysis_MC4b(){
 
-char *file_DATA=(char *)"/eos/user/v/vmariani/POS_Bari/MC4b_2016/DS4b_MC.root";
+char *file_DATA=(char *)"/home/common/LongExercises/Dstar/ntuples/DS4b_MC.root";
 TFile *DATA  =new TFile (file_DATA);
 
 TTree *a_ = (TTree*)DATA->Get("demo/Analysis");

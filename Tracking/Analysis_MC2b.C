@@ -23,7 +23,7 @@ using namespace std;
 
 void Analysis_MC2b(){
 
-char *file_DATA=(char *)"/eos/user/v/vmariani/POS_Bari/MC2b_2016/DS2b_MC.root";
+char *file_DATA=(char *)"/home/common/LongExercises/Dstar/ntuples/DS2b_MC.root";
 TFile *DATA  =new TFile (file_DATA);
 
 TTree *a_ = (TTree*)DATA->Get("demo/Analysis");
@@ -36,6 +36,7 @@ double K_pt_gen, K_eta_gen, K_phi_gen;
 double D0_pt_gen, D0_eta_gen, D0_phi_gen;
 double Pis_pt_gen, Pis_eta_gen, Pis_phi_gen;
 double DS_pt_gen, DS_eta_gen, DS_phi_gen;
+
 double Pis_pt, Pis_eta, Pis_phi;
 double Pi_pt, Pi_eta, Pi_phi;
 double K_pt, K_eta, K_phi;
